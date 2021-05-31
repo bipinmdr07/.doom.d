@@ -1,0 +1,52 @@
+# -*- mode: snippet -*-
+# name: polymer class
+# key: pclass
+# condition: t
+# --
+import { LitElement, html, css } from 'lit-element';
+
+/**
+ * \`<${1:$(string-inflection-kebab-case-function yas-text)}>\` ${2:Polymer Component}.
+ *
+ * @customElement
+ * @litElement
+ * @polymer
+ */
+class ${1:Class} extends LitElement {
+  /**
+   * Static geter properties.
+   *
+   * @returns {Object}
+   */
+  static get properties() {
+    return {}
+  }
+
+  /**
+   * Static getter styles.
+   *
+   * @returns {Array}
+   */
+  static get styles() {
+    return [
+      css\`\`
+    ]
+  }
+
+  /**
+   * The render method.
+   *
+   * @returns {HTMLElement}
+   */
+  render () {
+    return html\`
+      <div>
+        <p>
+          ${0:Render this one}
+        </p>
+      </div>
+    /`
+  }
+}
+
+customElements.define('${1:$(string-inflection-kebab-case-function yas-text)}', $1)

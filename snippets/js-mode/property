@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: polymer property
+# key: prop
+# condition: t
+# --
+/**
+ * ${3:Description}.
+ *
+ * @type {{ $1: $2 }}
+ */
+ ${1:key}: { type: ${2:Type} },
+ $4
