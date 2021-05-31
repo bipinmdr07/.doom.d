@@ -1,0 +1,30 @@
+#+TITLE: Doom Setup and configuration
+
+* Installation
+** Step1: Install Emacs
+*** Linux (Debian)
+#+begin_src bash
+sudo add-apt-repository ppa:kelleyk/emacs
+sudo apt update
+sudo apt install emacs27
+#+end_src
+
+** Step2: Install Doom Emacs
+#+begin_src bash
+# Clone Doom Emacs
+rm -rf ~/.emacs.d
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+
+# Clone config
+cd ~
+git clone git@github.com:bipinmdr07/.doom.d.git # recommended for me
+# OR
+git clone https://github.com/bipinmdr07/.doom.d.git
+~/.emacs.d/bin/doom install
+#+end_src
+
+** Step3: Installing dependencies
+First run the doom emacs `doctor` command and install missing dependencies manually as suggested.
+#+begin_src bash
+~/.emacs.d/bin/doom doctor
+#+end_src
