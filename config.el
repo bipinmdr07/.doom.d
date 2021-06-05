@@ -117,4 +117,8 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; (use-package! string-inflection :ensure t)
+(use-package string-inflection :ensure t)
+(use-package super-save
+  :ensure t
+  :config
+  (super-save-mode 1))
