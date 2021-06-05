@@ -70,6 +70,10 @@
       deft-extensions '("org")
       deft-recursive t)
 
+;; https://magit.vc/manual/forge.html
+;; this issue may be helpful for forge pull request commit issue: https://github.com/magit/forge/issues/320#issuecomment-754812905
+(setq auth-sources '("~/.authinfo.gpg"))
+
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
