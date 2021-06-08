@@ -70,6 +70,13 @@
       deft-extensions '("org")
       deft-recursive t)
 
+;; git commit setup hook for adding branch name to commit.
+(defun add-branch-name-to-commit-message()
+  (insert (concat (magit-get-current-branch)
+                  ": ")))
+
+(add-hook 'git-commit-setup-hook 'add-branch-name-to-commit-message)
+
 ;; https://magit.vc/manual/forge.html
 ;; this issue may be helpful for forge pull request commit issue: https://github.com/magit/forge/issues/320#issuecomment-754812905
 (setq auth-sources '("~/.authinfo.gpg"))

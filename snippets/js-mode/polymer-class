@@ -43,7 +43,7 @@ class ${1:Class} extends LitElement {
       <div>
       `%`$0
       </div>
-    /`
+    \`
   }
 }
 
