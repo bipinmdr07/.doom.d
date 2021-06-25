@@ -76,6 +76,7 @@
                   ": ")))
 
 (add-hook 'git-commit-setup-hook 'add-branch-name-to-commit-message)
+(add-hook! 'js2-mode-hook (modify-syntax-entry ?_ "w"))
 
 ;; https://magit.vc/manual/forge.html
 ;; this issue may be helpful for forge pull request commit issue: https://github.com/magit/forge/issues/320#issuecomment-754812905
