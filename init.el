@@ -35,13 +35,13 @@
        deft              ; notational velocity for Emacs
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       (emoji +unicode)  ; 🙂
-       fill-column       ; a `fill-column' indicator
+       doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       (emoji +ascii +github +unicode)  ; 🙂
+       ;; fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       hydra
+       ;; hydra
        indent-guides     ; highlighted indent columns
-       ligatures         ; ligatures and symbols to make your code pretty again
+       (ligatures)         ; ligatures and symbols to make your code pretty again
        minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
@@ -50,8 +50,8 @@
        (popup   ; tame sudden yet inevitable temporary windows
         +all ; catch all popups that start with an asterix
         +defaults) ; default popup rules
-       tabs              ; a tab bar for Emacs
-       (treemacs +icons)          ; a project drawer, like neotree but cooler
+       ;; tabs              ; a tab bar for Emacs
+       (treemacs +lsp +icons)          ; a project drawer, like neotree but cooler
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -78,7 +78,7 @@
         +ranger          ; bringing goodness of ranger to dired
         +icons)         ; colorful icons for dired-mode
        electric          ; smarter, keyword-based electric-indent
-       ibuffer         ; interactive buffer management
+       (ibuffer +icons)         ; interactive buffer management
        (undo +tree)             ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
@@ -89,15 +89,15 @@
        (vterm +childframe)             ; the best terminal emulation in Emacs
 
        :checkers
-       syntax              ; tasing you for every semicolon you forget
+       (syntax +childfram)              ; tasing you for every semicolon you forget
        (spell +flyspell +aspell) ; tasing you for misspelling mispelling
        grammar           ; tasing grammar mistake every you make
 
        :tools
-       ;;ansible
-       debugger          ; FIXME stepping through code, to help you add bugs
+       ;; ansible
+       (debugger +lsp)          ; FIXME stepping through code, to help you add bugs
        direnv
-       docker
+       (docker +lsp)
        editorconfig      ; let someone else argue about tabs vs spaces
        ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
@@ -106,7 +106,7 @@
         +dictionary                 ; dictionary/thesaurus is nice
         +devdocs        ; ...on devdocs.io online
         +docsets)                   ; ...or in Dash docsets locally
-       ;;lsp
+       (lsp +peek)
        (magit            ; a git porcelain for Emacs
         +forge)
        make              ; run make tasks from Emacs
@@ -132,7 +132,7 @@
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
-       (dart +flutter)   ; paint ui and not much else
+       (dart +lsp +flutter)   ; paint ui and not much else
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
@@ -148,7 +148,8 @@
        ;;idris             ; a language you can depend on
        json              ; At least it ain't XML
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript +lsp)
+        ;; +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
@@ -164,6 +165,7 @@
         +pretty                     ; yessss my pretties! (nice unicode symbols)
         +dragndrop                  ; drag & drop files/images into org buffers
         +habit
+        +journal
         ;;+hugo                     ; use Emacs for hugo blogging
         +noter                      ; enhanced PDF notetaking
         +jupyter                    ; ipython/jupyter support for babel
@@ -175,13 +177,13 @@
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       python            ; beautiful is better than ugly
+       ;; python            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
        rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
-       (ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       ;; (ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
@@ -190,7 +192,7 @@
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;; terra             ; Earth and Moon in alignment for performance.
-       web               ; the tubes
+       (web +lsp)               ; the tubes
        yaml              ; JSON, but readable
 
        :email
