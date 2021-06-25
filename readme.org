@@ -1,7 +1,7 @@
 #+TITLE: Doom Setup and configuration
 
 * Installation
-** Step1: Install Emacs
+** Install Emacs
 *** Linux (Debian)
 #+begin_src bash
 # install emacs from snap
@@ -9,7 +9,7 @@ sudo apt install snapd -y
 sudo snap install emacs --classic
 #+end_src
 
-** Step2: Install Doom Emacs
+** Install Doom Emacs
 #+begin_src bash
 # Clone Doom Emacs
 rm -rf ~/.emacs.d
@@ -26,8 +26,14 @@ git clone https://github.com/bipinmdr07/.doom.d.git
 ~/.emacs.d/bin/doom install
 #+end_src
 
-** Step3: Installing dependencies
+* Installing dependencies
 First run the doom emacs `doctor` command and install missing dependencies manually as suggested.
 #+begin_src bash
 ~/.emacs.d/bin/doom doctor
+#+end_src
+
+* LSP (Language Server Protocol)
+Have to install Deno for js-ts-lsp site can be found here at [[https://deno.land/#installation][Dano installation page]]
+#+begin_src bash
+curl -fsSL https://deno.land/x/install/install.sh | sh
 #+end_src
