@@ -52,6 +52,39 @@
                      (apply #'< (mapcar (lambda (range) (- (cdr range) (car range)))
                                         (list l1 l2)))))))))
 
+(global-set-key (kbd "C-c L") 'sort-lines-by-length)
+
+;; Hex color highlight
+(defun xah-syntax-color-hex ()
+  "Syntax color text of the form '#ff1100' and '#abc' in current buffer.
+  URL `http://ergoemacs.org/emacs/emacs_CSS_colors.html`"
+  (interactive)
+  (font-lock-add-keywords
+   nil
+   '(("#[[:xdigit:]]\\{3\\}"
+      (0 (put-text-property
+          (match-beginning 0)
+          (match-end 0)
+          'face (list :background
+                      (let* (
+                             (ms (match-string-no-properties 0))
+                             (r (substring ms 1 2))
+                             (g (substring ms 2 3))
+                             (b (substring ms 3 4))
+                             )
+                        (concat "#" r r g g b b))))))
+     ("#[[:xdigit:]]\\{6\\}"
+      (0 (put-text-property
+          (match-beginning 0)
+          (match-end 0)
+          'face (list :background (match-string-no-properties 0)))))
+     ))
+  (font-lock-flush))
+
+(add-hook 'js-mode-hook 'xah-syntax-color-hex)
+(add-hook 'css-mode-hook 'xah-syntax-color-hex)
+(add-hook 'web-mode-hook 'xah-syntax-color-hex)
+
 ;; Accepting the both changes from buffer A and B in ediff
 (defun ediff-copy-both-to-C ()
   (interactive)
