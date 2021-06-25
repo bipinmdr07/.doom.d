@@ -13,12 +13,14 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
+(setq exec-path (append exec-path '("~/.nvm/versions/node/v14.16.1/bin")))
+(require 'dap-chrome)
 
 (setq auto-save-default t
       make-backup-files t)
 
 (setq company-idle-delay 0.2
-      company-minimum-prefix-length 5)
+      company-minimum-prefix-length 2)
 
 (with-eval-after-load 'company
   (define-key company-active-map [tab] 'company-complete-selection)
@@ -34,9 +36,12 @@
       web-mode-code-indent-offset 2
       css-indent-offset 2)
 
+(setq +format-with-lsp nil)
+
 (setq-default evil-escape-key-sequence "jj")
 (setq byte-complile-warning '(cl-functions))
 (display-time-mode 1)
+(dap-mode 1)
 
 (defun sort-lines-by-length (reverse beg end)
   "Sort lines by length."
