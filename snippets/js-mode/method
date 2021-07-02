@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: method
+# key: mm
+# condition: t
+# --
+
+/**
+ * ${3:Method Description}.${2:$(js-docs-params yas-text)}
+ */
+${1:method}(${2:}) {
+$0
+}

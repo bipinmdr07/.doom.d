@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: async method
+# key: amm
+# condition: t
+# --
+
+/**
+ * ${3:Method Description}.${2:$(js-docs-params yas-text)}
+ */
+async ${1:method}(${2:}) {
+$0
+}

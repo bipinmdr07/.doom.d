@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bind
+# key: bnd
+# condition: t
+# --
+this.${1:methodName} = this.$1.bind(this);$`%`0
