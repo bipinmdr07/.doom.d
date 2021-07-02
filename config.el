@@ -5,19 +5,19 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
+(load! "+function")
+(load! "+ui")
+(load! "+prog")
+(load! "+binding")
+
 (setq user-full-name "Bipin Manandhar"
       user-mail-address "kubipin07@gmail.com")
 
-(prefer-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(setq default-buffer-file-coding-system 'utf-8)
-(setq exec-path (append exec-path '("~/.nvm/versions/node/v14.16.1/bin")))
 (require 'dap-chrome)
 
 (setq auto-save-default t
       make-backup-files t)
+(setq confirm-kill-emacs nil)
 
 (setq company-idle-delay 0.2
       company-minimum-prefix-length 2)
@@ -26,79 +26,12 @@
   (define-key company-active-map [tab] 'company-complete-selection)
   (define-key company-active-map (kbd "TAB") 'company-complete-selection))
 
-(setq javascript-indent-level 2
-      js-indent-level 2
-      js2-indent-level 2
-      js2-basic-offset 2
-      tab-width: 2
-      web-mode-markup-indent-offset 2
-      web-mode-css-indent-offset 2
-      web-mode-code-indent-offset 2
-      css-indent-offset 2)
-
-(setq +format-with-lsp nil)
-
-(setq-default evil-escape-key-sequence "jj")
 (setq byte-complile-warning '(cl-functions))
-(display-time-mode 1)
 (dap-mode 1)
 
-(defun sort-lines-by-length (reverse beg end)
-  "Sort lines by length."
-  (interactive "P\nr")
-  (save-excursion
-    (save-restriction
-      (narrow-to-region beg end)
-      (goto-char (point-min))
-      (let ;; To make `end-of-line' and etc. to ignore fields.
-          ((inhibit-field-text-motion t))
-        (sort-subr reverse 'forward-line 'end-of-line nil nil
-                   (lambda (l1 l2)
-                     (apply #'< (mapcar (lambda (range) (- (cdr range) (car range)))
-                                        (list l1 l2)))))))))
-
-(global-set-key (kbd "C-c L") 'sort-lines-by-length)
-
-;; Hex color highlight
-(defun xah-syntax-color-hex ()
-  "Syntax color text of the form '#ff1100' and '#abc' in current buffer.
-  URL `http://ergoemacs.org/emacs/emacs_CSS_colors.html`"
-  (interactive)
-  (font-lock-add-keywords
-   nil
-   '(("#[[:xdigit:]]\\{3\\}"
-      (0 (put-text-property
-          (match-beginning 0)
-          (match-end 0)
-          'face (list :background
-                      (let* (
-                             (ms (match-string-no-properties 0))
-                             (r (substring ms 1 2))
-                             (g (substring ms 2 3))
-                             (b (substring ms 3 4))
-                             )
-                        (concat "#" r r g g b b))))))
-     ("#[[:xdigit:]]\\{6\\}"
-      (0 (put-text-property
-          (match-beginning 0)
-          (match-end 0)
-          'face (list :background (match-string-no-properties 0)))))
-     ))
-  (font-lock-flush))
-
-(add-hook 'js-mode-hook 'xah-syntax-color-hex)
-(add-hook 'css-mode-hook 'xah-syntax-color-hex)
-(add-hook 'web-mode-hook 'xah-syntax-color-hex)
-
-;; Accepting the both changes from buffer A and B in ediff
-(defun ediff-copy-both-to-C ()
-  (interactive)
-  (ediff-copy-diff ediff-current-difference nil 'C nil
-                   (concat
-                    (ediff-get-region-contents ediff-current-difference 'A ediff-control-buffer)
-                    (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
-(defun add-d-to-ediff-mode-map () (define-key ediff-mode-map "B" 'ediff-copy-both-to-C))
-(add-hook 'ediff-keymap-setup-hook 'add-d-to-ediff-mode-map)
+(after! org
+  (setq org-log-done t)
+  (setq org-log-into-drawer t))
 
 (yas-global-mode 1)
 (add-hook 'yas-minor-mode-hook (lambda ()
@@ -108,13 +41,7 @@
       deft-extensions '("org")
       deft-recursive t)
 
-;; git commit setup hook for adding branch name to commit.
-(defun add-branch-name-to-commit-message()
-  (insert (concat (magit-get-current-branch)
-                  ": ")))
-
 (add-hook 'git-commit-setup-hook 'add-branch-name-to-commit-message)
-(add-hook! 'js2-mode-hook (modify-syntax-entry ?_ "w"))
 
 ;; https://magit.vc/manual/forge.html
 ;; this issue may be helpful for forge pull request commit issue: https://github.com/magit/forge/issues/320#issuecomment-754812905
@@ -133,21 +60,17 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
+;; (setq doom-font (font-spec :family "Hack" :size 14 :slant 'italic))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
-;; (setq doom-theme 'doom-vibrant)
-
-(setq doom-themes-treemacs-theme "doom-colors")
+;; (setq doom-theme 'doom-one)
+;; (setq doom-theme 'spacemacs-dark)
+;; (setq doom-themes-treemacs-theme "doom-colors")
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
-
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -167,8 +90,11 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(use-package string-inflection :ensure t)
+(use-package string-inflection)
 (use-package super-save
-  :ensure t
   :config
   (super-save-mode 1))
+(use-package lsp-dart
+  :config
+  (setq lsp-dart-flutter-sdk-dir "~/snap/flutter/common/flutter")
+  (setq lsp-dart-sdk-dir "~/snap/flutter/common/flutter/bin/cache/dart-sdk"))
