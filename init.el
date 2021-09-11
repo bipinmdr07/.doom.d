@@ -60,7 +60,7 @@
        zen               ; distraction-free coding or writing
 
        :editor
-       (evil +everywhere); come to the dark side, we have cookies
+       (evil +everywhere +commands); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
@@ -78,8 +78,8 @@
         +ranger          ; bringing goodness of ranger to dired
         +icons)         ; colorful icons for dired-mode
        electric          ; smarter, keyword-based electric-indent
-       (ibuffer +icons)         ; interactive buffer management
-       (undo +tree)             ; persistent, smarter undo for your inevitable mistakes
+       ;; (ibuffer +icons)         ; interactive buffer management
+       (undo +tree)            ; persistent, smarter undo for your inevitable mistakes
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
@@ -99,14 +99,15 @@
        direnv
        (docker +lsp)
        editorconfig      ; let someone else argue about tabs vs spaces
-       ein               ; tame Jupyter notebooks with emacs
+       ;; ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
        (lookup              ; navigate your code and its documentation
         +dictionary                 ; dictionary/thesaurus is nice
         +devdocs        ; ...on devdocs.io online
         +docsets)                   ; ...or in Dash docsets locally
-       (lsp +peek)
+       lsp
+       ;; +peek)
        (magit            ; a git porcelain for Emacs
         +forge)
        make              ; run make tasks from Emacs
@@ -115,7 +116,7 @@
        prodigy           ; FIXME managing external services & code builders
        rgb               ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
-       ;;terraform         ; infrastructure as code
+       terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
 
@@ -148,8 +149,8 @@
        ;;idris             ; a language you can depend on
        json              ; At least it ain't XML
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       (javascript +lsp)
-        ;; +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
+       (javascript
+        +lsp)        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
        ;;latex             ; writing papers in Emacs has never been so fun
@@ -192,7 +193,8 @@
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;; terra             ; Earth and Moon in alignment for performance.
-       (web +lsp)               ; the tubes
+       web
+       ;; +lsp)               ; the tubes
        yaml              ; JSON, but readable
 
        :email
@@ -207,5 +209,5 @@
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config
-       ;;literate
+       ;; literate
        (default +bindings +snippets +evil-commands +smartparens))
