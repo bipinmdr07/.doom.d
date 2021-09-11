@@ -36,12 +36,20 @@
 (yas-global-mode 1)
 (add-hook 'yas-minor-mode-hook (lambda ()
                                  (yas-activate-extra-mode 'fundamental-mode)))
+(setq yas-triggers-in-field t)
 
 (setq deft-directory "~/org"
       deft-extensions '("org")
       deft-recursive t)
 
 (add-hook 'git-commit-setup-hook 'add-branch-name-to-commit-message)
+(add-hook 'js2-mode-hook 'yas-no-expand-in-comment/string)
+(add-hook 'js2-mode-hook 'flyspell-prog-mode)
+
+(add-hook 'js2-mode-hook
+          #'(lambda ()
+              (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
+              (define-key js2-mode-map "@" 'js-doc-insert-tag)))
 
 ;; https://magit.vc/manual/forge.html
 ;; this issue may be helpful for forge pull request commit issue: https://github.com/magit/forge/issues/320#issuecomment-754812905
@@ -91,9 +99,6 @@
 ;; they are implemented.
 
 (use-package string-inflection)
-(use-package super-save
-  :config
-  (super-save-mode 1))
 (use-package lsp-dart
   :config
   (setq lsp-dart-flutter-sdk-dir "~/snap/flutter/common/flutter")

@@ -21,11 +21,6 @@
                                         ;                 GIT                 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                                        ;       Damn this comment block       ;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 ;; Accepting the both changes from the buffer A and B in ediff
 (defun ediff-copy-both-to-C()
   (interactive)
@@ -38,8 +33,19 @@
 (defun add-branch-name-to-commit-message()
   (insert (concat (magit-get-current-branch) ": ")))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Prevent the yas snippet from expanding in the comment section ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun yas-no-expand-in-comment/string ()
+  (setq yas-buffer-local-condition
+        '(if (nth 8 (syntax-ppss)) ;; non-nil  if in as string or comment
+             '(require-snippet-condition . force-in-comment)
+           t)))
+
+
 ;; Convert comma separated string to js-docs params
 (defun js-docs-params (str)
+  (interactive)
   (if (equal (length str) 0)
       ""
     (concat "\n*\n"

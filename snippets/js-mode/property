@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: polymer property
-# key: prop
+# key: pp
 # condition: t
 # --
 /**
