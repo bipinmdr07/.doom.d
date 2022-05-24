@@ -90,7 +90,7 @@
 
        :checkers
        (syntax +childfram)              ; tasing you for every semicolon you forget
-       (spell +flyspell +aspell) ; tasing you for misspelling mispelling
+       (spell +flyspell +aspell +everywhere) ; tasing you for misspelling mispelling
        grammar           ; tasing grammar mistake every you make
 
        :tools
@@ -158,7 +158,7 @@
        ;;factor
        ;;ledger            ; an accounting system in Emacs
        ;;lua               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+       (markdown +grip)          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
