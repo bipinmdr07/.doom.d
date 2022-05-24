@@ -14,7 +14,7 @@ import { LitElement, html, css } from 'lit-element';
  */
 class ${1:Class} extends LitElement {
   /**
-   * Static geter properties.
+   * Static getter properties.
    *
    * @returns {Object}
    */
