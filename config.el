@@ -14,6 +14,7 @@
       user-mail-address "kubipin07@gmail.com")
 
 (require 'dap-chrome)
+(require 'livedown)
 
 (setq auto-save-default t
       make-backup-files t)
@@ -38,9 +39,19 @@
                                  (yas-activate-extra-mode 'fundamental-mode)))
 (setq yas-triggers-in-field t)
 
-(setq deft-directory "~/org"
+(setq deft-directory "~/Dropbox/org"
       deft-extensions '("org")
       deft-recursive t)
+
+(setq projectile-indexing-method 'alien)
+(setq projectile-enable-caching t)
+(setq projectile-require-project-root t)
+(setq projectile-switch-project-action #'projectile-dired)
+(setq projectile-completion-system 'ido)
+
+;; (autoload 'markdown-mode "markdown-mode" t)
+;; (add-to-list 'auto-mode-alist
+;;              '("\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\|mdx\\)\\'" . markdown-mode))
 
 (add-hook 'git-commit-setup-hook 'add-branch-name-to-commit-message)
 (add-hook 'js2-mode-hook 'yas-no-expand-in-comment/string)
@@ -78,7 +89,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Dropbox/org/")
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
