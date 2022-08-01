@@ -30,9 +30,9 @@
 (setq byte-complile-warning '(cl-functions))
 (dap-mode 1)
 
-(after! org
-  (setq org-log-done t)
-  (setq org-log-into-drawer t))
+;; (after! org
+;;   (setq org-log-done t)
+;;   (setq org-log-into-drawer t))
 
 (yas-global-mode 1)
 (add-hook 'yas-minor-mode-hook (lambda ()
@@ -44,7 +44,7 @@
       deft-recursive t)
 
 (setq projectile-indexing-method 'alien)
-(setq projectile-enable-caching t)
+(setq projectile-enable-caching nil)
 (setq projectile-require-project-root t)
 (setq projectile-switch-project-action #'projectile-dired)
 (setq projectile-completion-system 'ido)
