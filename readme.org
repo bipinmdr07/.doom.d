@@ -40,23 +40,22 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
 
 * Setting up Magit
 1. First create a `Personal access token` by going to `setting` and `Developer setting` on with name
-   ```
+   #+begin_src bash
    {{username}}^forge // bipinmdr07^forge
-   ```
+   #+end_src
 2. Configure the `github.name` to register a username for forge by running
-   ```sh
+   #+begin_src bash
    git config --global github.user {{username}}
 
    # example
    git config --global github.user bipinmdr07
-   ```
+   #+end_src
 3. create a `.authinfo` file with content
-   ```sh
+   #+begin_src bash
    machine api.github.com login {{username}}^forge password {{personal_access_token}}
-   ```
+   #+end_src
 4. encrypt the `.authinfo` file to `.authinfo.gpg` with password by running
-   ```
+   #+begin_src bash
    M-x epa-encrypt-file
-   ```
-
+   #+end_src
    and select the `.authinfo` file
