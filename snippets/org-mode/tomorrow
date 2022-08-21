@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: tomorrow
+# key: voli
+# --
+`(format-time-string "%a %Y %B %d" (time-add (current-time) (* 24 3600)))`$0
