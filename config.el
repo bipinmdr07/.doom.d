@@ -62,6 +62,9 @@
               (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
               (define-key js2-mode-map "@" 'js-doc-insert-tag)))
 
+
+(setq magit-diff-refine-hunk 'all)
+
 ;; https://magit.vc/manual/forge.html
 ;; this issue may be helpful for forge pull request commit issue: https://github.com/magit/forge/issues/320#issuecomment-754812905
 (setq auth-sources '("~/.authinfo.gpg"))

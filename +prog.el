@@ -4,9 +4,11 @@
 (set-keyboard-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
 
-(setq exec-path (append exec-path '("~/.nvm/versions/node/v14.16.1/bin")))
+;; (setq exec-path (append exec-path '("~/.nvm/versions/node/v14.16.1/bin")))
 
 (setq javascript-indent-level 2
+      typescript-indent-level 2
+      typescript-expr-indent-offset 2
       js-indent-level 2
       js2-indent-level 2
       js2-basic-offset 2
@@ -16,8 +18,11 @@
       css-indent-offset 2)
 
 (setq-hook! 'js2-mode-hook +format-with-lsp nil)
+(setq-hook! 'typescript-mode-hook +format-with-lsp nil)
 
 (add-hook! 'js2-mode-hook (modify-syntax-entry ?_ "w"))
+(add-hook! 'typescript-mode-hook (modify-syntax-entry ?_ "w"))
 
 (add-hook 'js2-mode-hook #'lsp)
 (setq lsp-eldoc-render-all t)
+;; (setq lsp-clients-typescript-max-ts-server-memory '512)
