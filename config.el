@@ -117,3 +117,13 @@
   :config
   (setq lsp-dart-flutter-sdk-dir "~/snap/flutter/common/flutter")
   (setq lsp-dart-sdk-dir "~/snap/flutter/common/flutter/bin/cache/dart-sdk"))
+
+
+(use-package blamer
+  :ensure t
+  :defer 20
+  :custom
+  (blamer-idle-time 0.2)
+  (blamer-min-offset 70)
+  :config(global-blamer-mode 1)
+  )
