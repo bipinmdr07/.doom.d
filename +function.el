@@ -42,6 +42,11 @@
              '(require-snippet-condition . force-in-comment)
            t)))
 
+;; Auto clock in on changing the task status to inprogress;
+(defun org-clock-todo-change ()
+  (if (string= org-state "[-]")
+      (org-clock-in)
+    (org-clock-out-if-current)))
 
 ;; Convert comma separated string to js-docs params
 (defun js-docs-params (str)

@@ -26,3 +26,8 @@
 (add-hook 'js2-mode-hook #'lsp)
 (setq lsp-eldoc-render-all t)
 ;; (setq lsp-clients-typescript-max-ts-server-memory '512)
+
+;; org-mode hook
+(add-hook 'org-after-todo-state-change-hook
+          'org-clock-todo-change)
+
