@@ -127,3 +127,9 @@
   (blamer-min-offset 70)
   :config(global-blamer-mode 1)
   )
+
+(require 'simple-httpd)
+(setq httpd-root "~/Dropbox/org")
+(setq httpd-port 8488)
+(httpd-start)
+
