@@ -93,7 +93,19 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Dropbox/org/")
+(setq org-agenda-files '("~/Dropbox/org" "~/Dropbox/org/journal"))
 
+(setq org-journal-date-prefix "#+TITLE: "
+      org-journal-time-prefix "* "
+      org-journal-file-type 'daily
+      org-journal-date-format "%a, %Y-%m-%d"
+      org-journal-file-format "%Y-%m-%d.org")
+
+(defvar org-journal--date-location-scheduled-time nil)
+
+(setq org-capture-templates '(("j" "Journal entry" plain (function org-journal-date-location)
+                               "* TODO %?\n <%(print org-journal--date-location-scheduled-time)>\n"
+                               :jump-to-captured t)))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
