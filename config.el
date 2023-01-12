@@ -103,9 +103,9 @@
 
 (defvar org-journal--date-location-scheduled-time nil)
 
-(setq org-capture-templates '(("j" "Journal entry" plain (function org-journal-date-location)
-                               "* TODO %?\n <%(print org-journal--date-location-scheduled-time)>\n"
-                               :jump-to-captured t)))
+;; (setq org-capture-templates '(("j" "Journal entry" plain (function org-journal-date-location)
+;;                                "* TODO %?\n <%(print org-journal--date-location-scheduled-time)>\n"
+;;                                :jump-to-captured t)))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -140,8 +140,59 @@
   :config(global-blamer-mode 1)
   )
 
-(require 'simple-httpd)
-(setq httpd-root "~/Dropbox/org")
-(setq httpd-port 8488)
-(httpd-start)
+;; Adding org capture template to existing list of templates provided by doom.
+;; This Journal template `j` will take priority over journal template provided by doom
+(after! org
+  (add-to-list 'org-capture-templates
+             '("j" "My Journal Entry" plain (function org-journal-date-location)
+               "* TODO %?\n <%(print org-journal--date-location-scheduled-time)>\n"
+               :jump-to-captured t)))
 
+(use-package! org-super-agenda
+  :after org-agenda
+  :custom-face
+  (org-super-agenda-header ((default (:inherit propositum-agenda-heading))))
+
+  :init
+  (setq org-agenda-skip-scheduled-if-done t
+        org-agenda-skip-deadline-if-done t
+        org-agenda-include-deadlines t
+        org-agenda-block-separator nil
+        org-agenda-compact-blocks t
+        org-agenda-start-day nil ;; i.e. today
+        org-agenda-span 1
+        org-agenda-start-on-weekday nil)
+  (setq org-agenda-custom-commands
+        '(("c" "Super view"
+           ((agenda "" ((org-agenda-overriding-header "")
+                        (org-super-agenda-groups
+                         '((:name "Today"
+                            :time-grid t
+                            :date today
+                            :order 1)))))
+            (alltodo "" ((org-agenda-overriding-header "")
+                         (org-super-agenda-groups
+                          '((:log t)
+                            (:name #(" due this week\n" 0 1 (rear-nonsticky t display (raise -0.24) font-lock-face (:family "Material Icons" :height 1.2) face (:family "Material Icons" :height 1.2)))
+                             :deadline past
+                             :order 8)
+                            (:name "Important"
+                             :priority<= ("A" "B")
+                             :order 2)
+                            (:name "Due soon"
+                             :deadline future)
+                            (:name "Due Today"
+                             :deadline today
+                             :order 3)
+                            (:name "Scheduled Soon"
+                             :scheduled future
+                             :order 9)
+                            (:name "Overdue"
+                             :deadline past
+                             :order 7)
+                            (:name "Meetings"
+                             :and (:tag "MEETING" :scheduled (today))
+                             :order 5)
+                            (:discard (:not (:todo ("TODO", "DONE"))))))))))))
+  :config
+  (org-super-agenda-mode))

@@ -13,7 +13,8 @@
 (package! js-doc)
 (package! livedown)
 (package! blamer)
-(package! simple-httpd)
+(package! org-super-agenda)
+(package! calfw-org)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
