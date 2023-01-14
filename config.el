@@ -193,6 +193,6 @@
                             (:name "Meetings"
                              :and (:tag "MEETING" :scheduled (today))
                              :order 5)
-                            (:discard (:not (:todo ("TODO", "DONE"))))))))))))
+                            (:discard (:not (:todo ("TODO" "DONE"))))))))))))
   :config
   (org-super-agenda-mode))
