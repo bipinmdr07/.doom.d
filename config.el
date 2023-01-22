@@ -93,7 +93,11 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Dropbox/org/")
+
 (setq org-agenda-files '("~/Dropbox/org" "~/Dropbox/org/journal"))
+(setq org-journal-dir "~/Dropbox/org/journal")
+
+;; (setq org-todo-keywords (append org-todo-keys '("QUESTION(q)")))
 
 (setq org-journal-date-prefix "#+TITLE: "
       org-journal-time-prefix "* "
@@ -140,13 +144,34 @@
   :config(global-blamer-mode 1)
   )
 
+;; Adding the tag to carryover items.
+;; (setq org-journal-carryover-items "-carried")
+;; (setq org-journal-carryover-items "+TODO -DONE -CANCELED -carried -exclude")
+;; (setq org-journal-carryover-function #'my-filter-carryover-items)
+(setq org-journal-handle-old-carryover 'my-old-carryover)
+(setq org-journal-carryover-items "-carried")
+;; (defun my-filter-carryover-items ()
+;;   (setq old-carryover-items (org-journal--carryover))
+;;   (setq org-journal-carryover-items (remove-if-not (lambda (item) (not (member "carried" (org-get-tags-at (car item))))) old-carryover-items)))
+
+;; ;; ;; (setq org-journal-carryover-items "-carried")
+;; (add-hook 'org-journal-before-entry-create-hook #'my-filter-carryover-items)
+
+;; (add-hook 'org-journal-after-entry-create-hook #'my-org-reschedule-carryover-tasks)
+
 ;; Adding org capture template to existing list of templates provided by doom.
 ;; This Journal template `j` will take priority over journal template provided by doom
+;; (setq org-todo-keywords (append org-todo-keys '("QUESTION(q)")))
+  ;; (setq org-todo-keywords '((sequence "TODO(t)" "IN_PROGRESS(i)" "WAITING(w)" "QUERY(q)" "|" "DONE(d)" "CANCELLED(c)")))
+  ;; (setq org-todo-keywords (append org-todo-keywords '("CUSTOM_TODO(x)")))
+  ;; (add-to-list 'org-todo-keywords '("CUSTOM_TODO(x)"))
 (after! org
   (add-to-list 'org-capture-templates
-             '("j" "My Journal Entry" plain (function org-journal-date-location)
-               "* TODO %?\n <%(print org-journal--date-location-scheduled-time)>\n"
-               :jump-to-captured t)))
+               '("j" "My Journal Entry" plain (function org-journal-date-location)
+                 "* TODO %?\n SCHEDULED: <%(print org-journal--date-location-scheduled-time)>"
+                 :jump-to-captured t))
+  ;; (add-to-list 'org-todo-keywords "CUSTOM_TODO(x)")
+  )
 
 (use-package! org-super-agenda
   :after org-agenda

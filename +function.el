@@ -73,11 +73,40 @@
         (save-restriction
           (narrow-to-region (car entry) (cadr entry))
           (goto-char (point-min))
-          (org-scan-tags '(lambda ()
-                            (org-set-tags ":carried"))
-                         matcher org--matcher-tags-todo-only))))))
+          (when (not (member ":carried:" (org-get-tags)))
+            (org-scan-tags '(lambda ()
+                              (org-set-tags ":carried:"))
+                           matcher org--matcher-tags-todo-only)))))))
+
+;; (defun my-filter-carryover-items (old-carryover)
+;;   (let ((exclude-tags "carried"))
+;;     (org-map-entries (lambda ()
+;;                        (when (and (member exclude-tags (org-get-tags)) (not (org-get-todo-state)))
+;;                          (setq old-carryover (delete (list (point) (point-at-eol)) old-carryover))))
+;;                      ""
+;;                      nil 'agenda)
+;;     old-carryover))
+
+
+(defun my-org-reschedule-carryover-tasks ()
+  (save-excursion
+    (goto-char (point-min))
+    (let ((today (org-today))
+          (matcher (cdr (org-make-tags-matcher org-journal-carryover-items))))
+      (while (re-search-forward org-complex-heading-regexp nil t)
+        (let ((state (org-get-todo-state)))
+          (when (and (not (member state '("DONE" "CANCELED")))
+                     (not (member ":carried:" (org-get-tags)))
+                     (org-get-tags-at matcher))
+            (let* ((scheduled-time (org-get-scheduled-time (point)))
+                   (scheduled-date (time-to-days scheduled-time)))
+              (when (< scheduled-date today)
+                (org-schedule nil (org-read-date nil 'to-time))))))))))
+
+
 
 ;; org-journal: Configuring journal Capture template to integration org-journal with org-capture
+;;
 ;; Usage:
 ;; (defvar org-journal--date-location-scheduled-time nil)
 ;;
