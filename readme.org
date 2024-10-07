@@ -38,7 +38,7 @@ Have to install Deno for js-ts-lsp site can be found here at [[https://deno.land
 curl -fsSL https://deno.land/x/install/install.sh | sh
 #+end_src
 
-* Setting up Magit
+* Setting up Magit Forge
 1. First create a `Personal access token` by going to `setting` and `Developer setting` on with name
    #+begin_src bash
    {{username}}^forge // bipinmdr07^forge
@@ -59,3 +59,28 @@ curl -fsSL https://deno.land/x/install/install.sh | sh
    M-x epa-encrypt-file
    #+end_src
    and select the `.authinfo` file
+
+* Setting up dap-mode
+** Firefox
+1. Download debug tool from vscode marketplace.
+   #+begin_src text
+    https://marketplace.visualstudio.com/items?itemName=firefox-devtools.vscode-firefox-debug
+   #+end_src
+2. Unzip the file to specific location.
+   #+begin_src bash
+    mkdir -p ~/.emacs.d/.extension/vscode/firefox-devtools
+    unzip ~/Downloads/firefox-devtools.vscode-firefox-debug-2.9.10.vsix -d ~/.emacs.d/.extension/vscode/firefox-devtools
+   #+end_src
+3. Test if debug tool is working by running `M-x: dap-debug`.
+
+** Google Chrome
+1. Download debug tool from vscode market place.
+   #+begin_src text
+    https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome
+   #+end_src
+2. Unzip the file to specific location.
+   #+begin_src bash
+    mkdir -p ~/.emacs.d/.extension/vscode/chrome-debug
+    unzip ~/Downloads/msjsdiag.debugger-for-chrome-4.13.0.vsix -d ~/.emacs.d/.extension/vscode/chrome-debug
+   #+end_src
+3. Test if debug tool is working by running `M-x: dap-debug`
