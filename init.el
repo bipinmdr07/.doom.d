@@ -20,16 +20,15 @@
        layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       (company
-        +auto
-        +childframe)           ; the ultimate code completion backend
+       (company +childframe)           ; the ultimate code completion backend
        ;; helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        (ivy               ; a search engine for love and life
-        -prescient
         +childframe
-        +fuzzy
-        +icons)
+        +icons
+        ;; +prescient
+        +fuzzy)
+       ;; (vertico +icons)   ; the search engine of the future
 
        :ui
        deft              ; notational velocity for Emacs
@@ -39,13 +38,12 @@
        (emoji +ascii +github +unicode)  ; 🙂
        ;; fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       ;; hydra
        indent-guides     ; highlighted indent columns
-       (ligatures)         ; ligatures and symbols to make your code pretty again
+       ligatures         ; ligatures and symbols to make your code pretty again
        minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
-       ;;neotree           ; a project drawer, like NERDTree for vim
+       neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup   ; tame sudden yet inevitable temporary windows
         +all ; catch all popups that start with an asterix
@@ -60,7 +58,7 @@
        zen               ; distraction-free coding or writing
 
        :editor
-       (evil +everywhere +commands); come to the dark side, we have cookies
+       (evil +everywhere +commands) ; come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        (format +onsave)  ; automated prettiness
@@ -102,10 +100,11 @@
        ;; ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        ;;gist              ; interacting with github gists
-       (lookup              ; navigate your code and its documentation
-        +dictionary                 ; dictionary/thesaurus is nice
-        +devdocs        ; ...on devdocs.io online
-        +docsets)                   ; ...or in Dash docsets locally
+       ;; (lookup              ; navigate your code and its documentation
+       ;;  +dictionary                 ; dictionary/thesaurus is nice
+       ;;  +devdocs        ; ...on devdocs.io online
+       ;;  +offline
+       ;;  +docsets)                   ; ...or in Dash docsets locally
        lsp
        ;; +peek)
        (magit            ; a git porcelain for Emacs
@@ -114,10 +113,9 @@
        ;;pass              ; password manager for nerds
        pdf               ; pdf enhancements
        prodigy           ; FIXME managing external services & code builders
-       rgb               ; creating color strings
        ;;taskrunner        ; taskrunner for all your projects
-       terraform         ; infrastructure as code
-       ;;tmux              ; an API for interacting with tmux
+       ;; terraform         ; infrastructure as code
+       ;; tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
 
        :os
@@ -132,13 +130,13 @@
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
-       data              ; config/data formats
-       (dart +lsp +flutter)   ; paint ui and not much else
+       ;; data              ; config/data formats
+       ;; (dart +lsp +flutter)   ; paint ui and not much else
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
        ;;erlang            ; an elegant language for a more civilized age
-       ess               ; emacs speaks statistics
+       ;; ess               ; emacs speaks statistics
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
@@ -156,7 +154,7 @@
        ;;latex             ; writing papers in Emacs has never been so fun
        ;;lean
        ;;factor
-       ;;ledger            ; an accounting system in Emacs
+       ledger            ; an accounting system in Emacs
        ;;lua               ; one-based indices? one-based indices
        (markdown +grip)          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
@@ -174,7 +172,7 @@
         +gnuplot                    ; who doesn't like pretty pictures
         ;;+pomodoro                 ; be fruitful with the tomato technique
         +present                    ; using org-mode for presentations
-        +roam)                      ; wander around notes
+        +roam2)                      ; wander around notes
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
@@ -204,8 +202,9 @@
 
        :app
        calendar
+       emms
        ;;irc               ; how neckbeards socialize
-       (rss +org)        ; emacs as an RSS reader
+       ;; (rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config

@@ -23,6 +23,7 @@
 (add-hook! 'js2-mode-hook (modify-syntax-entry ?_ "w"))
 (add-hook! 'typescript-mode-hook (modify-syntax-entry ?_ "w"))
 
+;; (add-hook 'vue-mode-hook #'lsp)
 (add-hook 'js2-mode-hook #'lsp)
 (setq lsp-eldoc-render-all t)
 ;; (setq lsp-clients-typescript-max-ts-server-memory '512)
@@ -31,3 +32,18 @@
 (add-hook 'org-after-todo-state-change-hook
           'org-clock-todo-change)
 
+(add-hook 'text-mode-hook #'type-break-mode)
+(add-hook 'prog-mode-hook #'type-break-mode)
+(setq type-break-interval (* 25 60))
+
+;; bug-reference-mode
+(defun jira-ticket-url ()
+  (format
+   "https://traytinc.atlassian.net/browse/%s-%s"
+   (upcase (match-string 1))
+   (match-string 3)))
+
+(setq bug-reference-bug-regexp "\\b\\(AP\\|MBC\\|CPT\\)\\([-]\\)\\([0-9]+\\)\\b")
+(setq bug-reference-url-format 'jira-ticket-url)
+(add-hook 'prog-mode-hook #'bug-reference-prog-mode)
+(add-hook 'text-mode-hook #'bug-reference-mode)
