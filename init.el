@@ -39,11 +39,11 @@
        ;; fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        indent-guides     ; highlighted indent columns
-       ligatures         ; ligatures and symbols to make your code pretty again
-       minimap           ; show a map of the code on the side
+       ligatures +fira         ; ligatures and symbols to make your code pretty again
+       ;; minimap           ; show a map of the code on the side
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink cursor line after big motions
-       neotree           ; a project drawer, like NERDTree for vim
+       ;; neotree           ; a project drawer, like NERDTree for vim
        ophints           ; highlight the region an operation acts on
        (popup   ; tame sudden yet inevitable temporary windows
         +all ; catch all popups that start with an asterix
@@ -73,7 +73,7 @@
 
        :emacs
        (dired             ; making dired pretty [functional]
-        +ranger          ; bringing goodness of ranger to dired
+        ;;+ranger          ; bringing goodness of ranger to dired
         +icons)         ; colorful icons for dired-mode
        electric          ; smarter, keyword-based electric-indent
        ;; (ibuffer +icons)         ; interactive buffer management
@@ -88,14 +88,14 @@
 
        :checkers
        (syntax +childfram)              ; tasing you for every semicolon you forget
-       (spell +flyspell +aspell +everywhere) ; tasing you for misspelling mispelling
-       grammar           ; tasing grammar mistake every you make
+       ;; (spell +flyspell +aspell +everywhere) ; tasing you for misspelling mispelling
+       ;; grammar           ; tasing grammar mistake every you make
 
        :tools
        ;; ansible
        (debugger +lsp)          ; FIXME stepping through code, to help you add bugs
        direnv
-       (docker +lsp)
+       ;; (docker +lsp)
        editorconfig      ; let someone else argue about tabs vs spaces
        ;; ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
@@ -180,7 +180,7 @@
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
-       rest              ; Emacs as a REST client
+       ;; rest              ; Emacs as a REST client
        ;;rst               ; ReST in peace
        ;; (ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
@@ -201,8 +201,8 @@
        ;;(wanderlust +gmail)
 
        :app
-       calendar
-       emms
+       ;; calendar
+       ;; emms
        ;;irc               ; how neckbeards socialize
        ;; (rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought

@@ -20,12 +20,12 @@
 (setq confirm-kill-emacs nil)
 (setq type-break-mode t)
 
-(setq company-idle-delay 0.1
-      company-minimum-prefix-length 2)
+;; (setq company-idle-delay 0.1
+;;       company-minimum-prefix-length 2)
 
-(with-eval-after-load 'company
-  (define-key company-active-map [tab] 'company-complete-selection)
-  (define-key company-active-map (kbd "TAB") 'company-complete-selection))
+;; (with-eval-after-load 'company
+;;   (define-key company-active-map [tab] 'company-complete-selection)
+;;   (define-key company-active-map (kbd "TAB") 'company-complete-selection))
 
 (setq byte-complile-warning '(cl-functions))
 
@@ -37,9 +37,9 @@
 (setq projectile-enable-caching nil)
 (setq projectile-switch-project-action #'projectile-dired)
 
-(add-hook 'git-commit-setup-hook 'add-branch-name-to-commit-message)
+(add-hook 'git-commit-mode-hook 'add-branch-name-to-commit-message)
 (add-hook 'js2-mode-hook 'yas-no-expand-in-comment/string)
-(add-hook 'js2-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'js2-mode-hook 'flyspell-prog-mode)
 
 (add-hook 'js2-mode-hook
           #'(lambda ()
@@ -63,8 +63,9 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
-;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "Fira Code" :size 14 :weight 'semi-light)
+      line-spacing 3)
+;; doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 ;; (setq doom-font (font-spec :family "Hack" :size 14 :slant 'italic))
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -130,19 +131,17 @@
 (use-package flycheck-ledger :after ledger-mode)
 
 ;; Copilot configuration;; accept completion from copilot and fallback to company
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map
-              ("<tab>" . 'copilot-accept-completion)
-              ("TAB" . 'copilot-accept-completion)
-              ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+;; (use-package! copilot
+;;   :hook (prog-mode . copilot-mode)
+;;   :bind (:map copilot-completion-map
+;;               ("<tab>" . 'copilot-accept-completion)
+;;               ("TAB" . 'copilot-accept-completion)
+;;               ("C-TAB" . 'copilot-accept-completion-by-word)
+;;               ("C-<tab>" . 'copilot-accept-completion-by-word)))
 
 
-;; Trigger completion immediately.
-(setq company-idle-delay 0)
 ;; Number the candidates (use M-1, M-2 etc to select completions).
-(setq company-show-quick-access t)
+;; (setq company-show-quick-access t)
 
 ;; Org roam UI
 (use-package! websocket
@@ -155,3 +154,25 @@
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t))
+
+;; org-mermaid
+(setq ob-mermaid-cli-path "/Users/leapfrog/.nvm/versions/node/v20.10.0/bin/mmdc")
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((mermaid . t)
+   (scheme . t)))
+
+;; (use-package! blamer
+;;   :bind (("s-i" . blamer-show-commit-info))
+;;   :defer 20
+;;   :custom
+;;   (blamer-idle-time 0.3)
+;;   (blamer-min-offset 70)
+;;   :custom-face
+;;   (blamer-face ((t :foreground "#7a88cf"
+;;                    :background nil
+;;                    :height 140
+;;                    :italic t)))
+;;   :config
+;;   (global-blamer-mode 1))
